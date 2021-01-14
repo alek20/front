@@ -1,0 +1,48 @@
+<mat-toolbar style="color: primary;">Admission</mat-toolbar>
+<h1 style="text-align: center; font-weight: bold; font-size: larger;">List</h1>
+
+<mat-card style="width: 75%; margin: auto;">
+ <form>  
+    <button (click)="post(AdmissionInput.value)"
+  mat-fab 
+   style="float: right">
+    <mat-icon>add</mat-icon>
+</button>
+
+
+ <mat-form-field>
+<mat-label>Name</mat-label>
+<input  #AdmissionInput matInput placeholder="Enter name"/>
+</mat-form-field>
+
+    <mat-form-field>
+<mat-label>Surname</mat-label>
+<input #AdmissionInput matInput placeholder="Enter surname"/>
+</mat-form-field>
+
+  <mat-form-field>
+<mat-label>Email</mat-label>
+<input #AdmissionInput matInput placeholder="Enter email"/>
+</mat-form-field>
+</form>
+    <mat-list>
+        <mat-list-item *ngFor="let admission of admissions$ | async">
+<span style="font-weight: 600;">
+{{ admission.id }}.{{ admission.stu_name }} 
+{{ admission.stu_surname }}-{{ admission.email }}</span>
+ <span style="position: absolute; right: 0;">
+        <button mat-icon-button>
+<mat-icon (click)="update(admission.id, admissionInput.value)" color="primary">
+    edit
+</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon (click)="delete(admission.id)" color="warn">
+                delete
+            </mat-icon>
+                    </button>
+    </span>
+
+</mat-list-item>
+    </mat-list>
+</mat-card>
